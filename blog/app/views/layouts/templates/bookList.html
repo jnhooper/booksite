@@ -1,0 +1,17 @@
+<div ng-repeat = "book in books" class="list-group-item">
+  <div class="book-info">
+    <h2>{{book.title}}</h2>
+    <p>{{book.description}}</p>
+    <h4><small>by:</small>
+      <div ng-repeat="author in book.authors">
+        {{author.first_name}} {{author.last_name}}
+      </div></h4>
+  </div>
+  <% if current_user %>
+    <div class="btn-group">
+      <button class="edit-book  btn btn-success btn-xs" ng-click="testEdit(book)">Edit</button>
+      <button class="delete-book btn btn-danger btn-xs" ng-click="deleteBook(book, $index)">Delete</button>
+    </div>
+  <% end %>
+  <div class="spacer" style="clear:both;"></div>
+</div>

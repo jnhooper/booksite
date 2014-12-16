@@ -1,0 +1,48 @@
+<div  ng-controller="bookCtrl">
+<% if current_user %>
+    <h3>{{userName = "<%=current_user.name%>"}} is logged in</h3>
+    <button class="btn btn-primary btn-xs" ng-click="testBook()">+newBook</button>
+<% end %>
+<div class="list-group">
+  {{test}}
+
+<div ng-repeat = "book in books" class="list-group-item">
+  <listed-book></listed-book>
+  <!-- <div class="book-info">
+    <h2>{{book.title}}</h2>
+    <p>{{book.description}}</p>
+    <h4><small>by:</small>
+      <div ng-repeat="author in book.authors">
+        {{author.first_name}} {{author.last_name}}
+      </div></h4>
+  </div> -->
+  <% if current_user %>
+    <div class="btn-group">
+      <button class="edit-book  btn btn-success btn-xs" ng-click="testEdit(book)">Edit</button>
+      <button class="delete-book btn btn-danger btn-xs" ng-click="deleteBook(book, $index)">Delete</button>
+    </div>
+  <% end %>
+  <div class="spacer" style="clear:both;"></div>
+</div>
+</div>
+</div>
+
+<div ng-controller="authorCtrl" class="list-group">
+
+  <h1>Authors</h1>
+  <% if current_user %>
+    <button class="btn btn-primary btn-xs" ng-click="testAuthor()">+new Author</button>
+  <% end %>
+<div ng-repeat = "author in authors" class="list-group-item">
+  <h3>Name:{{author.first_name}} {{author.last_name}}</h3>
+  <h3><small>Books:</small></h3>
+  <h4 ng-repeat="book in author.books">{{book.title}} <small>{{book.description}}</small></h4>
+
+  <% if current_user %>
+      <div class="btn-group">
+        <button class="edit-book  btn btn-success btn-xs" ng-click="testEdit(author)" >Edit</button>
+        <button class="delete-book btn btn-danger btn-xs" ng-click="deleteAuthor(author)">Delete</button>
+      </div>
+  <% end %>
+</div>
+</div>
